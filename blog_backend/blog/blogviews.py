@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Article, Category
+from django.http import HttpResponse
 
 
 def index(request):
 
     articles = Article.objects.order_by('-updated_at')
-
     categories = Category.objects.all()
+    
 
     context = {'articles' : articles, 'categories' : categories}
 

@@ -16,4 +16,7 @@ urlpatterns = [
     path('category/', blogviews.category, name='category'),
     path('details/', blogviews.details, name='details'),
     path('archive/', blogviews.archive, name='archive'),
+
+    path('category/<name>', blogviews.category, name='categories'),
+
 ]

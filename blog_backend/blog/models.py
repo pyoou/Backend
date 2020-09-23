@@ -47,3 +47,7 @@ class Article(models.Model):
     
     class Meta:
         ordering = ['id', 'author', 'title', 'created_at']
+
+
+
+    
