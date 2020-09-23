@@ -1,7 +1,16 @@
 from django.shortcuts import render, redirect
+from .models import Article, Category
+
 
 def index(request):
-    return render(request, 'sensive/index.html')
+
+    articles = Article.objects.order_by('-updated_at')
+
+    categories = Category.objects.all()
+
+    context = {'articles' : articles, 'categories' : categories}
+
+    return render(request, 'sensive/index.html', context)
 
 def contact(request):
     return render(request, 'sensive/contact.html')

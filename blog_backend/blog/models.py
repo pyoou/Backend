@@ -17,16 +17,15 @@ class Person(models.Model):
     class Meta:
         ordering = ['id', 'surname', 'date']
 
-
-
-
-
 class Category(models.Model):
-
-    title = models.CharField(max_length=40)
     
+    name = models.CharField(max_length=20, null=True)
+
     def __str__(self):
-        return "%s" % (self.title)
+        return self.name
+
+    class Meta:
+        ordering = ['name']
 
 
 class Article(models.Model):
@@ -34,7 +33,10 @@ class Article(models.Model):
     title       = models.CharField(max_length=100)
     content     = models.TextField()
     author      = models.CharField(max_length=40)
-    tags    = models.CharField(max_length=10)
+    tags        = models.CharField(max_length=10, null=True)
+    public      = models.BooleanField(default=False)
+    image       = models.ImageField(blank=True, null=True)
+    category    = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)
@@ -44,4 +46,4 @@ class Article(models.Model):
 
     
     class Meta:
-        ordering = ['title', 'created_at', 'category']
+        ordering = ['id', 'author', 'title', 'created_at']
